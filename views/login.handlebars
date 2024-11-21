@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <form action="/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" placeholder="Senha" required>
+        <button type="submit">Login</button>
+         <p>Já cadastrou?  <a href="/register">Clique aqui para se registrar!</a></p>
+
+    </form>
+
+    <!-- Exibir mensagens de sucesso -->
+{{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+
+<!-- Exibir mensagens de erro -->
+{{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}
+
+
+</body>
+</html>

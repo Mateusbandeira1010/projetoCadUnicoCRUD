@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        /* Estilos gerais para a lista de filmes */
+body {
+    font-family: Arial, sans-serif;
+     background-color: #ebae0785;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Título da lista de filmes */
+h2 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Container de cada filme - Tamanho fixo e uniforme */
+.filme {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Tamanho fixo */
+    height: 250px; /* Tamanho fixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaçamento uniforme entre os elementos */
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efeito de hover nos itens da lista de filmes */
+.filme:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o título de cada filme */
+.filme h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    text-overflow: ellipsis; /* Adiciona reticências caso o nome seja longo */
+    overflow: hidden;
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+}
+
+/* Estilo para a descrição e gênero dos filmes */
+.filme p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Para truncar o texto se necessário */
+}
+
+/* Mensagem quando não há filmes cadastrados */
+p {
+    color: #888;
+    text-align: center;
+}
+
+    </style>
+
+
+        <h1>Cadastrar Filme</h1>
+
+  <form action="/crud" method="POST">
+      <input type="text" name="nome" placeholder="Nome do Filme" required>
+      <input type="text" name="descriçao" placeholder="Descrição" required>
+      <input type="text" name="genero" placeholder="Gênero" required>
+      <button type="submit">Cadastrar</button>
+  </form>
+
+  <!-- Exibir mensagem de sucesso, se houver -->
+  {{#if successMessage}}
+    <div class="alert alert-success">
+      {{successMessage}}
+    </div>
+  {{/if}}
+
+  <!-- Exibir mensagem de erro, se houver -->
+  {{#if errorMessage}}
+    <div class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+
+  <h2>Lista de Filmes</h2>
+  {{#if filmes.length}}
+    {{#each filmes}}
+      <div class="filme">
+          <h3>{{this.nome}}</h3>
+          <p>Descrição: {{this.descriçao}}</p>
+          <p>Gênero: {{this.genero}}</p>
+
+      </div>
+    {{/each}}
+  {{else}}
+    <p>Nenhum filme cadastrado.</p>
+  {{/if}}
+
+
+    <script src="/filmes.js"></script>
+</body>
+</html>
